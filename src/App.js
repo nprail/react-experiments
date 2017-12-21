@@ -1,16 +1,56 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
+import {CardList, Form} from './Github'
 
-let helloWorld = 'Hello world!!!'
-const wow = () => {
-  console.log('Wow!')
-  helloWorld = 'Wow!'
-  ReactDOM.render(
-    <App/>, document.getElementById('root'));
+const Result = (props) => {
+  return (
+    <div>{props.counter}</div>
+  )
+};
+
+class Button extends Component {
+  handleClick = () => {
+    this
+      .props
+      .onClickFunc(this.props.incrementValue);
+  }
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        +{this.props.incrementValue}
+      </button>
+    )
+  }
 }
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      helloWorld: 'Hello world!!!',
+      counter: 0,
+      cards: []
+    }
+  }
+  handleWow = () => {
+    this.setState({helloWorld: 'Wow!'})
+  }
+  incrementCounter = (incVal) => {
+    this.setState((prevState) => {
+      return {
+        counter: prevState.counter + incVal
+      }
+    });
+  }
+  addNewCard = (card) => {
+    this.setState((prevState) => {
+      return {
+        cards: prevState
+          .cards
+          .concat(card)
+      }
+    });
+  }
   render() {
     return (
       <div className="App">
@@ -19,8 +59,17 @@ class App extends Component {
           <h1 className="App-title">Welcome to React!</h1>
         </header>
         <p className="App-intro">
-          {helloWorld}
-          <button onClick={wow}>Wow</button>
+          {this.state.helloWorld}
+          <br/>
+          <button onClick={this.handleWow}>Wow</button>
+          <br/>
+          <Button incrementValue={1} onClickFunc={this.incrementCounter}></Button>
+          <Button incrementValue={5} onClickFunc={this.incrementCounter}></Button>
+          <Button incrementValue={10} onClickFunc={this.incrementCounter}></Button>
+          <Result counter={this.state.counter}></Result>
+          <br/>
+          <Form onSubmit={this.addNewCard}></Form>
+          <CardList cards={this.state.cards}></CardList>
         </p>
       </div>
     );
