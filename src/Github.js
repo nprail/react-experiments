@@ -6,7 +6,7 @@ const Card = (props) => {
         <div style={{
             margin: '1em'
         }}>
-            <img width="75" src={props.avatar_url}/>
+            <img width="75" alt={props.name} src={props.avatar_url}/>
             <div
                 style={{
                 display: 'inline-block',

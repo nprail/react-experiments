@@ -62,15 +62,15 @@ class App extends Component {
           {this.state.helloWorld}
           <br/>
           <button onClick={this.handleWow}>Wow</button>
-          <br/>
-          <Button incrementValue={1} onClickFunc={this.incrementCounter}></Button>
-          <Button incrementValue={5} onClickFunc={this.incrementCounter}></Button>
-          <Button incrementValue={10} onClickFunc={this.incrementCounter}></Button>
-          <Result counter={this.state.counter}></Result>
-          <br/>
-          <Form onSubmit={this.addNewCard}></Form>
-          <CardList cards={this.state.cards}></CardList>
         </p>
+        <br/>
+        <Button incrementValue={1} onClickFunc={this.incrementCounter}></Button>
+        <Button incrementValue={5} onClickFunc={this.incrementCounter}></Button>
+        <Button incrementValue={10} onClickFunc={this.incrementCounter}></Button>
+        <Result counter={this.state.counter}></Result>
+        <br/>
+        <Form onSubmit={this.addNewCard}></Form>
+        <CardList cards={this.state.cards}></CardList>
       </div>
     );
   }
